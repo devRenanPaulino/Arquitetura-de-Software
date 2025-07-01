@@ -1,5 +1,5 @@
 # Arquitetura-de-Software
-
+link de vizualização no notion: https://www.notion.so/Design-System-Arquitetura-de-Software-1f51217d39c980f0a126fe2676d3d516?source=copy_link
 # **Arquitetura Inicial**
 
 ![Arquitetura Inicial.svg](img/Arquitetura_Inicial.svg)

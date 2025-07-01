@@ -2,7 +2,7 @@
 
 # **Arquitetura Inicial**
 
-![Arquitetura Inicial.svg](attachment:de355812-f9ee-4ece-ad87-90b99f8de9d1:Arquitetura_Inicial.svg)
+![Arquitetura Inicial.svg](img/Arquitetura_Inicial.svg)
 
 ### Resumo Técnico:
 
@@ -28,7 +28,7 @@
 
 # Separação dos Servidores
 
-![Separação dos Servidores.svg](attachment:9d874615-20a1-4748-94e2-cc7b76f9ba38:Separao_dos_Servidores.svg)
+![Separação dos Servidores.svg](img/Separao_dos_Servidores.svg)
 
 Antes, o **código da aplicação (API)** e o **banco de dados** estavam no mesmo servidor. Agora, eles foram **separados em dois servidores diferentes**:
 
@@ -71,13 +71,13 @@ Já a **escala horizontal** nos permite distribuir a carga entre **vários servi
 
 Por isso, adotamos estratégias de **redundância** e **failover**, que garantem a continuidade dos serviços: se um servidor falhar, outro assume automaticamente seu lugar, mantendo o sistema funcional.
 
-![Demonstração de escala vertical e escala horizontal](attachment:95773731-db55-4d81-886d-8638eee1c52a:Escala_Vertical_x_Escala_Horizontal.svg)
+![Demonstração de escala vertical e escala horizontal](img/Escala_Vertical_x_Escala_Horizontal.svg)
 
 Demonstração de escala vertical e escala horizontal
 
 # Escala Horizontal com Load Balancer
 
-![Escalando Horizontalmente.svg](attachment:32a4dfc1-062c-45d2-9c35-c8ef2483fbc2:Escalando_Horizontalmente.svg)
+![Escalando Horizontalmente.svg](img/Escalando_Horizontalmente.svg)
 
 Para suportar um grande volume de acessos e garantir que nossa aplicação continue disponível mesmo em momentos de pico ou falhas, adotamos a estratégia de **escala horizontal**, utilizando um **Load Balancer** (balanceador de carga).
 
@@ -120,7 +120,7 @@ Para resolver esse gargalo e preparar a aplicação para **milhões de usuários
 
 Para resolver o problema de sobrecarga no banco de dados — causado por múltiplas instâncias da aplicação acessando o mesmo banco — aplicamos a estratégia de **replicação de dados**, separando os papéis de escrita e leitura.
 
-![Database Replication.svg](attachment:86c0c566-1109-48eb-a48d-073e3b0860e4:Database_Replication.svg)
+![Database Replication.svg](img/Database_Replication.svg)
 
 ### Como funciona?
 
@@ -174,7 +174,7 @@ O **Amazon Aurora** permite configurar um **cluster**  —  computadores fracame
 
 # Arquitetura com Replicação de Banco de Dados
 
-![Arquitetura com Database Replication.svg](attachment:05b96dbb-e294-40bb-958f-2e0d2f6b0e1d:Arquitetura_com_Database_Replication.svg)
+![Arquitetura com Database Replication.svg](img/Arquitetura_com_Database_Replication.svg)
 
 Aplicação com nível de arquitetura robusta e escalável, com alta disponibilidade e preparação para grandes volumes de acesso simultâneo.
 
@@ -260,7 +260,7 @@ Para melhorar a **performance da aplicação** e reduzir o número de requisiç�
 
 ### Por que usar cache?
 
-![Adicionar Camada de Cache.svg](attachment:038191eb-5ec8-4ef0-b402-32b46735e9f1:Adicionar_Camada_de_Cache.svg)
+![Adicionar Camada de Cache.svg](img/Adicionar_Camada_de_Cache.svg)
 
 - Alguns dados são **muito requisitados** com frequência e não mudam o tempo todo (ex: listagens, catálogos, dashboards).
 - Buscar esses dados repetidamente no banco **sobrecarrega** a camada de persistência e **aumenta a latência** da resposta.
@@ -270,7 +270,7 @@ Para melhorar a **performance da aplicação** e reduzir o número de requisiç�
 
 ### cache aside pattern (Cache a parte)
 
-![cache aside pattern.svg](attachment:5af88511-3efd-4ea2-8beb-c26305d18563:cache_aside_pattern.svg)
+![cache aside pattern.svg](img/cache_aside_pattern.svg)
 
 ### Fluxo de Funcionamento:
 
@@ -304,7 +304,7 @@ A biblioteca/ferramenta utilizada no exemplo foi o **Redis**, um dos sistemas de
 
 # Arquitetura com servidores cache
 
-![Arquitetura com Database Replication e Cache.svg](attachment:5dc1cd6a-ba67-4817-bdc8-bcc33a25361b:Arquitetura_com_Database_Replication_e_Cache.svg)
+![Arquitetura com Database Replication e Cache.svg](img/Arquitetura_com_Database_Replication_e_Cache.svg)
 
 A introdução da **camada de cache** trará ganhos enormes de desempenho à arquitetura. No entanto, ao utilizar **apenas um servidor de cache**, voltamos ao **problema do ponto único de falha**: se o cache ficar fora do ar, a aplicação pode enfrentar **erros graves ou lentidão extrema** ao tentar buscá-lo.
 
@@ -331,7 +331,7 @@ Para evitar esse problema, a solução é **provisionar múltiplos servidores de
 
 Elasticidade significa tornar a **escalabilidade horizontal automática**, permitindo que a infraestrutura **aumente ou diminua a quantidade de instâncias de forma dinâmica**, com base na demanda.
 
-![Arquitetura com Elasticidade.svg](attachment:548733d7-d34d-4568-9448-042d4a4c762c:Arquitetura_com_Elasticidade.svg)
+![Arquitetura com Elasticidade.svg](img/Arquitetura_com_Elasticidade.svg)
 
 ### Como funciona?
 
@@ -366,9 +366,9 @@ Isso volta a representar um **ponto único de falha**, **em nível físico e geo
 
 # Solução: Redundância entre Regiões
 
-![Arquitetura Diferentes Datacenters.svg](attachment:ffe0f801-d8f7-438b-809f-0a696bb4d772:Arquitetura_Diferentes_Datacenters.svg)
+![Arquitetura Diferentes Datacenters.svg](img/Arquitetura_Diferentes_Datacenters.svg)
 
-![Arquitetura Diferentes Datacenters 2.svg](attachment:28e6019e-edb9-45be-976b-05bf5f844a48:Arquitetura_Diferentes_Datacenters_2.svg)
+![Arquitetura Diferentes Datacenters 2.svg](img/Arquitetura_Diferentes_Datacenters_2.svg)
 
 - A arquitetura precisa ser **distribuída entre múltiplos data centers (zonas de disponibilidade)**.
 - Em nuvens como AWS, você pode replicar sua aplicação entre regiões (ex.: São Paulo e Ohio).
@@ -441,9 +441,9 @@ Essa redundância global introduz um novo tipo de complexidade:
 
 ---
 
-![Mensageria.svg](attachment:a07cfafe-b8b0-47d3-b12e-058ad9783cac:Mensageria.svg)
+![Mensageria.svg](img/Mensageria.svg)
 
-![Mensageria 2.svg](attachment:122fb9e6-917a-41a4-be11-63b1896195d1:Mensageria_2.svg)
+![Mensageria 2.svg](img/Mensageria_2.svg)
 
 ### Componentes envolvidos:
 
@@ -466,7 +466,7 @@ Quando o servidor executa tarefas **pesadas diretamente** dentro da requisição
 
 ### Solução: Processamento assíncrono com mensageria
 
-![Com Processamento assíncrono.svg](attachment:499befb4-d5e5-4f33-9504-3844d4be4578:Com_Processamento_assncrono.svg)
+![Com Processamento assíncrono.svg](img/Com_Processamento_assncrono.svg)
 
 ### Como funciona o fluxo:
 
@@ -507,7 +507,7 @@ Isso acontece porque o processamento do pagamento ocorre **fora do fluxo princip
 
 # Arquitetura Final
 
-![Arquitetura Final.svg](attachment:29923589-e3a7-4f87-bf1c-4f2bb1b1b6ac:Arquitetura_Final.svg)
+![Arquitetura Final.svg](img/Arquitetura_Final.svg)
 
 Esta é a **versão mais robusta** da arquitetura apresentada ao longo da jornada. Ela foi construída **gradualmente**, camada por camada, para lidar com **alta volumetria**, **resiliência**, **performance** e **escalabilidade global**.
 
